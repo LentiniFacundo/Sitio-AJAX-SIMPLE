@@ -24,6 +24,17 @@ document.addEventListener("DOMContentLoaded", (e) => {
             exito: respuesta => $main.innerHTML = respuesta,
             fallo: error => $main.innerHTML = `<p><b>${error}</b></p>`
     });
+
+    const incluirHTML = (seccion, url) => {
+        obtenerHTML({
+            url: url,
+            exito: respuesta => seccion.outerHTML = respuesta,
+            fallo: error => seccion.outerHTML = `<p><b>${error}</b></p>`
+        });
+    };
+
+    document.querySelectorAll("[data-incluir]")
+    .forEach(seccion => incluirHTML(seccion, seccion.getAttribute("data-incluir")));
 });
 
 document.addEventListener("click", (e) => {
